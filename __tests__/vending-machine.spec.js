@@ -6,15 +6,15 @@ describe('vendingMachine', () => {
     test.subject = new vendingMachine();
   })
 
-  
+
   describe('Printing inventory', () => {
 
     describe('When a given inventory exists', () => {
       it('should return the correct inventory name, price and quantity', () => {
-        const result = test.subject.printInventory('Water');
+        const result = test.subject.printInventory('water');
         const expectedResult = [
           {
-            "item": "Water",
+            "item": "water",
             "price": 2,
             "maxQuantity": 10,
             "quantity": 10
@@ -33,21 +33,30 @@ describe('vendingMachine', () => {
   })
 
 
-  // describe('Refilling inventory', () => { 
+  describe('Refilling inventory', () => { 
 
-  //   describe('When a given inventory is refilled', () => {
-  //     it('should return the correct inventory name and quantity', () => {
-  //       expect().toBe();
-  //     });
-  //   });
+    describe('When a given inventory exists', () => {
+      it('should return the correct inventory with quantity refilled to max quantity', () => {
+        const result = test.subject.refillInventory('coke');
+        const expectedResult = [
+          {
+            "item": "coke",
+            "price": 2,
+            "maxQuantity": 10,
+            "quantity": 10
+          }
+        ]
+        expect(result).toEqual(expectedResult);
+      });
+    });
 
-  //   describe('When a given inventory is full', () => {
-  //     it('should return it is full', () => {
-  //       expect().toBe();
-  //     });
-  //   });
+    describe('When a given inventory does not exist', () => {
+      it('should throw an error', () => {
+        expect(() => test.subject.refillInventory('orange')).toThrow('Please enter a valid item name');
+      });
+    });
 
-  // })
+  })
 
   
   // describe('Re-supplying change', () => { 

@@ -1,31 +1,31 @@
 const data = {
   "inventories": [
     {
-      "item": "Water",
+      "item": "water",
       "price": 2,
       "maxQuantity": 10,
       "quantity": 10
     },
     {
-      "item": "Coke",
+      "item": "coke",
       "price": 2,
       "maxQuantity": 10,
       "quantity": 2
     },
     {
-      "item": "Juice",
+      "item": "juice",
       "price": 3,
       "maxQuantity": 10,
       "quantity": 5
     },
     {
-      "item": "Chips",
+      "item": "chips",
       "price": 2.75,
       "maxQuantity": 10,
       "quantity": 0
     },
     {
-      "item": "Chocolate",
+      "item": "chocolate",
       "price": 2.50,
       "maxQuantity": 10,
       "quantity": 5
@@ -87,9 +87,28 @@ class vendingMachine {
     throw new Error('Please enter a valid item name')
   }
 
-  // refillInventory(){
-
-  // }
+  refillInventory(itemName){
+    if (typeof itemName === 'string' && itemName.length > 0) {
+      const itemRefilled = this.inventories.map((inventory) => {
+        if (itemName === inventory.item) {
+          return {
+            ...inventory,
+            quantity : inventory.maxQuantity
+          }
+        }else{
+          return inventory
+        }
+      }).filter((inventory) => {
+        return itemName === inventory.item
+      })
+      if (itemRefilled.length > 0) {
+        return itemRefilled
+      }else{
+        throw new Error('Please enter a valid item name')
+      }     
+    }  
+    throw new Error('Please enter a valid item name')
+  }
 
   // resupplyChange(){
 
