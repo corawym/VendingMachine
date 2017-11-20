@@ -33,22 +33,10 @@ const data = {
   ],
   "change": [
     {
-      "denomination": "nickel",
-      "value": 0.05,
+      "denomination": "toonie",
+      "value": 2.00,
       "maxQuantity": 10,
-      "quantity": 5
-    },
-    {
-      "denomination": "dime",
-      "value": 0.10,
-      "maxQuantity": 10,
-      "quantity": 5
-    },
-    {
-      "denomination": "quarter",
-      "value": 0.25,
-      "maxQuantity": 10,
-      "quantity": 5
+      "quantity": 10
     },
     {
       "denomination": "loonie",
@@ -57,10 +45,22 @@ const data = {
       "quantity": 10
     },
     {
-      "denomination": "toonie",
-      "value": 2.00,
+      "denomination": "quarter",
+      "value": 0.25,
       "maxQuantity": 10,
-      "quantity": 10
+      "quantity": 6
+    },
+    {
+      "denomination": "dime",
+      "value": 0.10,
+      "maxQuantity": 10,
+      "quantity": 0
+    },
+    {
+      "denomination": "nickel",
+      "value": 0.05,
+      "maxQuantity": 10,
+      "quantity": 5
     }
   ]
 }
@@ -149,9 +149,28 @@ class vendingMachine {
     throw new Error('Please enter more coins')
   }
 
-  // returnChange(){
+  // selectItem(itemName){
 
   // }
+
+  returnChange(change){
+    if (typeof change === 'number' && change > 0) {
+      let i = 0
+      let changeCoins =[]
+      while(i < this.change.length){
+        if(change >= this.change[i].value && this.change[i].quantity > 0){         
+          changeCoins.push(this.change[i].denomination)
+          change = (change - this.change[i].value).toFixed(2);
+        }else{
+          i++
+        }
+      }
+      return changeCoins
+    } else if (change === 0) {
+      return 'No changes'
+    }
+    throw new Error('Error')
+  }
 
 }
 

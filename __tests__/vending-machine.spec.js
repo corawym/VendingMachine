@@ -117,26 +117,25 @@ describe('vendingMachine', () => {
   })
 
 
-  // describe('Purchasing inventories', () => {
+  describe('Returning change as coins', () => {
 
-  //   describe('When a given payment exists and inventories are selected', () => {
-  //     it('should return the correct items with new quantity', () => {
-  //       expect().toBe();
-  //     });
-  //   });
+    describe('When a change is required', () => {
+      it('should return the correct denominations and value', () => {
+        const result = test.subject.returnChange(.65);
+        const expectedResult = ['quarter', 'quarter', 'nickel', 'nickel', 'nickel']
+        expect(result).toEqual(expectedResult);
+      });
+    });
 
-  // })
+    describe('When a change is not required', () => {
+      it('should not return anything', () => {
+        const result = test.subject.returnChange(0);
+        expect(result).toBe('No changes');
+        //  expect(() => test.subject.returnChange('0')).toThrow('Error');
+      });
+    });
 
-
-  // describe('Returning change as coins', () => {
-
-  //   describe('When a change is required', () => {
-  //     it('should return the correct denominations and value', () => {
-  //       expect().toBe();
-  //     });
-  //   });
-
-  // })
+  })
 
 
 });
