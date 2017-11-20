@@ -59,21 +59,30 @@ describe('vendingMachine', () => {
   })
 
   
-  // describe('Re-supplying change', () => { 
+  describe('Re-supplying change', () => { 
 
-  //   describe('When a given denomination is resupplied', () => {
-  //     it('should return the correct denomination, value and quantity', () => {
-  //       expect().toBe();
-  //     });
-  //   });
+    describe('When a given denomination exists', () => {
+      it('should return the correct denomination with quantity refilled to max quantity', () => {
+        const result = test.subject.resupplyChange('quarter');
+        const expectedResult = [
+          {
+            "denomination": "quarter",
+            "value": 0.25,
+            "maxQuantity": 10,
+            "quantity": 10
+          }
+        ]
+        expect(result).toEqual(expectedResult);
+      });
+    });
 
-  //   describe('When a given denomination is full', () => {
-  //     it('should return it is full', () => {
-  //       expect().toBe();
-  //     });
-  //   });
+    describe('When a given denomination does not exists', () => {
+      it('should throw an error', () => {
+         expect(() => test.subject.resupplyChange('penny')).toThrow('Please enter a valid denomination');
+      });
+    });
 
-  // })
+  })
 
 
   // describe('Dispensing inventory based on payment', () => {

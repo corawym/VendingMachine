@@ -95,7 +95,7 @@ class vendingMachine {
             ...inventory,
             quantity : inventory.maxQuantity
           }
-        }else{
+        } else {
           return inventory
         }
       }).filter((inventory) => {
@@ -103,16 +103,35 @@ class vendingMachine {
       })
       if (itemRefilled.length > 0) {
         return itemRefilled
-      }else{
+      } else {
         throw new Error('Please enter a valid item name')
       }     
     }  
     throw new Error('Please enter a valid item name')
   }
 
-  // resupplyChange(){
-
-  // }
+  resupplyChange(denomination){
+    if (typeof denomination === 'string' && denomination.length > 0) {
+      const denominationRefilled = this.change.map((change) => {
+        if (denomination === change.denomination) {
+          return {
+            ...change,
+            quantity : change.maxQuantity
+          }
+        } else {
+          return change
+        }
+      }).filter((change)=>{
+        return denomination === change.denomination
+      })
+      if (denominationRefilled.length > 0) {
+        return denominationRefilled
+      } else {
+        throw new Error('Please enter a valid denomination')
+      }
+    }
+    throw new Error('Please enter a valid denomination')
+  }
 
   // dispenseInventory(){
 
