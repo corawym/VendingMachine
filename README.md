@@ -9,3 +9,7 @@
 ## Technologies used
 - Javascript 
 - Jest
+
+
+## Screenshots
+![TDD results](src/vending-machine-tdd-results.png "TDD results")
