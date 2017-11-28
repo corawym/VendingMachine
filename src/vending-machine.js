@@ -99,28 +99,21 @@ class vendingMachine {
     throw new Error('Please enter a valid item name')
   }
 
-  // resupplyChange(denomination){
-  //   if (typeof denomination === 'string' && denomination.length > 0) {
-  //     const denominationRefilled = this.change.map((change) => {
-  //       if (denomination === change.denomination) {
-  //         return {
-  //           ...change,
-  //           quantity : change.maxQuantity
-  //         }
-  //       } else {
-  //         return change
-  //       }
-  //     }).filter((change)=>{
-  //       return denomination === change.denomination
-  //     })
-  //     if (denominationRefilled.length > 0) {
-  //       return denominationRefilled
-  //     } else {
-  //       throw new Error('Please enter a valid denomination')
-  //     }
-  //   }
-  //   throw new Error('Please enter a valid denomination')
-  // }
+  resupplyChange(denomination){
+    if (typeof denomination === 'string' && denomination.length > 0) {
+     if (this.change.filter((change) => change.denomination === denomination).length > 0) {
+        this.change.forEach((change) => {
+          if(change.denomination === denomination){
+            change.quantity = change.maxQuantity
+          }
+        })
+        return this.change.filter((change) => change.denomination === denomination);
+      } else {
+        throw new Error('Please enter a valid denomination')
+      }
+    }
+    throw new Error('Please enter a valid denomination')
+  }
 
   // dispenseInventory(payment){
   //   if (typeof payment === 'number' && payment > 0) {
