@@ -59,83 +59,83 @@ describe('vendingMachine', () => {
   })
 
   
-  describe('Re-supplying change', () => { 
+  // describe('Re-supplying change', () => { 
 
-    describe('When a given denomination exists', () => {
-      it('should return the correct denomination with quantity refilled to max quantity', () => {
-        const result = test.subject.resupplyChange('quarter');
-        const expectedResult = [
-          {
-            "denomination": "quarter",
-            "value": 0.25,
-            "maxQuantity": 10,
-            "quantity": 10
-          }
-        ]
-        expect(result).toEqual(expectedResult);
-      });
-    });
+  //   describe('When a given denomination exists', () => {
+  //     it('should return the correct denomination with quantity refilled to max quantity', () => {
+  //       const result = test.subject.resupplyChange('quarter');
+  //       const expectedResult = [
+  //         {
+  //           "denomination": "quarter",
+  //           "value": 0.25,
+  //           "maxQuantity": 10,
+  //           "quantity": 10
+  //         }
+  //       ]
+  //       expect(result).toEqual(expectedResult);
+  //     });
+  //   });
 
-    describe('When a given denomination does not exists', () => {
-      it('should throw an error', () => {
-         expect(() => test.subject.resupplyChange('penny')).toThrow('Please enter a valid denomination');
-      });
-    });
+  //   describe('When a given denomination does not exists', () => {
+  //     it('should throw an error', () => {
+  //        expect(() => test.subject.resupplyChange('penny')).toThrow('Please enter a valid denomination');
+  //     });
+  //   });
 
-  })
-
-
-  describe('Dispensing inventory based on payment', () => {
-
-    describe('When a given payment is higher than any item prices', () => {
-      it('should return the affordable and available inventories', () => {
-        const result = test.subject.dispenseInventory(2.6);
-        const expectedResult = [
-          {
-            "item": "water",
-            "price": 2,
-            "maxQuantity": 10,
-            "quantity": 10
-          },
-          {
-            "item": "coke",
-            "price": 2,
-            "maxQuantity": 10,
-            "quantity": 2
-          }
-        ]
-        expect(result).toEqual(expectedResult);
-      });
-    });
-
-    describe('When a given payment is 0', () => {
-      it('should throw an error', () => {
-         expect(() => test.subject.dispenseInventory(0)).toThrow('Please enter more coins');
-      });
-    });
-
-  })
+  // })
 
 
-  describe('Returning change as coins', () => {
+  // describe('Dispensing inventory based on payment', () => {
 
-    describe('When a change is required', () => {
-      it('should return the correct denominations and value', () => {
-        const result = test.subject.returnChange(.65);
-        const expectedResult = ['quarter', 'quarter', 'nickel', 'nickel', 'nickel']
-        expect(result).toEqual(expectedResult);
-      });
-    });
+  //   describe('When a given payment is higher than any item prices', () => {
+  //     it('should return the affordable and available inventories', () => {
+  //       const result = test.subject.dispenseInventory(2.6);
+  //       const expectedResult = [
+  //         {
+  //           "item": "water",
+  //           "price": 2,
+  //           "maxQuantity": 10,
+  //           "quantity": 10
+  //         },
+  //         {
+  //           "item": "coke",
+  //           "price": 2,
+  //           "maxQuantity": 10,
+  //           "quantity": 2
+  //         }
+  //       ]
+  //       expect(result).toEqual(expectedResult);
+  //     });
+  //   });
 
-    describe('When a change is not required', () => {
-      it('should not return anything', () => {
-        const result = test.subject.returnChange(0);
-        expect(result).toBe('No changes');
-        //  expect(() => test.subject.returnChange('0')).toThrow('Error');
-      });
-    });
+  //   describe('When a given payment is 0', () => {
+  //     it('should throw an error', () => {
+  //        expect(() => test.subject.dispenseInventory(0)).toThrow('Please enter more coins');
+  //     });
+  //   });
 
-  })
+  // })
+
+
+  // describe('Returning change as coins', () => {
+
+  //   describe('When a change is required', () => {
+  //     it('should return the correct denominations and value', () => {
+  //       const result = test.subject.returnChange(.65);
+  //       const expectedResult = ['quarter', 'quarter', 'nickel', 'nickel', 'nickel']
+  //       expect(result).toEqual(expectedResult);
+  //     });
+  //   });
+
+  //   describe('When a change is not required', () => {
+  //     it('should not return anything', () => {
+  //       const result = test.subject.returnChange(0);
+  //       expect(result).toBe('No changes');
+  //       //  expect(() => test.subject.returnChange('0')).toThrow('Error');
+  //     });
+  //   });
+
+  // })
 
 
 });

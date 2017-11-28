@@ -74,12 +74,8 @@ class vendingMachine {
 
   printInventory(itemName){
     if (typeof itemName === 'string' && itemName.length > 0) {
-      const itemFound = this.inventories.filter((inventory) => {
-        return itemName === inventory.item
-      })
-      // console.log(itemFound)
-      if (itemFound.length > 0) {
-        return itemFound
+      if (this.inventories.filter((inventory) => inventory.item === itemName).length > 0) {
+        return this.inventories.filter((inventory) => inventory.item === itemName)
       } else {
         throw new Error('Please enter a valid item name')
       }
@@ -89,88 +85,81 @@ class vendingMachine {
 
   refillInventory(itemName){
     if (typeof itemName === 'string' && itemName.length > 0) {
-      const itemRefilled = this.inventories.map((inventory) => {
-        if (itemName === inventory.item) {
-          return {
-            ...inventory,
-            quantity : inventory.maxQuantity
+      if (this.inventories.filter((inventory) => inventory.item === itemName).length > 0) {
+        this.inventories.forEach((inventory) => {
+          if(inventory.item === itemName){
+            inventory.quantity = inventory.maxQuantity
           }
-        } else {
-          return inventory
-        }
-      }).filter((inventory) => {
-        return itemName === inventory.item
-      })
-      if (itemRefilled.length > 0) {
-        return itemRefilled
+        })
+        return this.inventories.filter((inventory) => inventory.item === itemName);
       } else {
         throw new Error('Please enter a valid item name')
-      }     
+      }
     }  
     throw new Error('Please enter a valid item name')
   }
 
-  resupplyChange(denomination){
-    if (typeof denomination === 'string' && denomination.length > 0) {
-      const denominationRefilled = this.change.map((change) => {
-        if (denomination === change.denomination) {
-          return {
-            ...change,
-            quantity : change.maxQuantity
-          }
-        } else {
-          return change
-        }
-      }).filter((change)=>{
-        return denomination === change.denomination
-      })
-      if (denominationRefilled.length > 0) {
-        return denominationRefilled
-      } else {
-        throw new Error('Please enter a valid denomination')
-      }
-    }
-    throw new Error('Please enter a valid denomination')
-  }
-
-  dispenseInventory(payment){
-    if (typeof payment === 'number' && payment > 0) {
-      const availableItem = this.inventories.filter((inventory) => {
-        if (payment >= inventory.price && inventory.quantity > 0) {
-          return inventory
-        }
-      }) 
-      if (availableItem.length > 0) {
-        return availableItem
-      } else {
-        throw new Error('Please enter more coins')
-      }
-    }
-    throw new Error('Please enter more coins')
-  }
-
-  // selectItem(itemName){
-
+  // resupplyChange(denomination){
+  //   if (typeof denomination === 'string' && denomination.length > 0) {
+  //     const denominationRefilled = this.change.map((change) => {
+  //       if (denomination === change.denomination) {
+  //         return {
+  //           ...change,
+  //           quantity : change.maxQuantity
+  //         }
+  //       } else {
+  //         return change
+  //       }
+  //     }).filter((change)=>{
+  //       return denomination === change.denomination
+  //     })
+  //     if (denominationRefilled.length > 0) {
+  //       return denominationRefilled
+  //     } else {
+  //       throw new Error('Please enter a valid denomination')
+  //     }
+  //   }
+  //   throw new Error('Please enter a valid denomination')
   // }
 
-  returnChange(change){
-    if (typeof change === 'number' && change > 0) {
-      let i = 0
-      let changeCoins =[]
-      while(i < this.change.length){
-        if(change >= this.change[i].value && this.change[i].quantity > 0){         
-          changeCoins.push(this.change[i].denomination)
-          change = (change - this.change[i].value).toFixed(2);
-        }else{
-          i++
-        }
-      }
-      return changeCoins
-    } else if (change === 0) {
-      return 'No changes'
-    }
-    throw new Error('Error')
-  }
+  // dispenseInventory(payment){
+  //   if (typeof payment === 'number' && payment > 0) {
+  //     const availableItem = this.inventories.filter((inventory) => {
+  //       if (payment >= inventory.price && inventory.quantity > 0) {
+  //         return inventory
+  //       }
+  //     }) 
+  //     if (availableItem.length > 0) {
+  //       return availableItem
+  //     } else {
+  //       throw new Error('Please enter more coins')
+  //     }
+  //   }
+  //   throw new Error('Please enter more coins')
+  // }
+
+  // // selectItem(itemName){
+
+  // // }
+
+  // returnChange(change){
+  //   if (typeof change === 'number' && change > 0) {
+  //     let i = 0
+  //     let changeCoins =[]
+  //     while(i < this.change.length){
+  //       if(change >= this.change[i].value && this.change[i].quantity > 0){         
+  //         changeCoins.push(this.change[i].denomination)
+  //         change = (change - this.change[i].value).toFixed(2);
+  //       }else{
+  //         i++
+  //       }
+  //     }
+  //     return changeCoins
+  //   } else if (change === 0) {
+  //     return 'No changes'
+  //   }
+  //   throw new Error('Error')
+  // }
 
 }
 
