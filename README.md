@@ -5,11 +5,16 @@
 - Convert scenarios into unit tests using Jest
 - Use Test Driven Development (TDD) to write code that passes tests
 
-
 ## Technologies used
 - Javascript 
 - Jest
 
+## Run Test
+run:
+
+```bash
+npm run test
+```
 
 ## Screenshots
 ![TDD results](src/vending-machine-tdd-results.png "TDD results")
