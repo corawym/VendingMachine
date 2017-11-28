@@ -117,25 +117,32 @@ describe('vendingMachine', () => {
   })
 
 
-  // describe('Returning change as coins', () => {
+  describe('Returning change as coins', () => {
 
-  //   describe('When a change is required', () => {
-  //     it('should return the correct denominations and value', () => {
-  //       const result = test.subject.returnChange(.65);
-  //       const expectedResult = ['quarter', 'quarter', 'nickel', 'nickel', 'nickel']
-  //       expect(result).toEqual(expectedResult);
-  //     });
-  //   });
+    describe('When a given change request is valid', () => {
+      describe('When a change is required', () => {
+        it('should return the correct denominations and quantity', () => {
+          const result = test.subject.returnChange(.65);
+          const expectedResult = ['quarter', 'quarter', 'nickel', 'nickel', 'nickel']
+          expect(result).toEqual(expectedResult);
+        });
+      });
 
-  //   describe('When a change is not required', () => {
-  //     it('should not return anything', () => {
-  //       const result = test.subject.returnChange(0);
-  //       expect(result).toBe('No changes');
-  //       //  expect(() => test.subject.returnChange('0')).toThrow('Error');
-  //     });
-  //   });
+      describe('When a change is not required', () => {
+        it('should not return anything', () => {
+          const result = test.subject.returnChange(0);
+          expect(result).toBe('No changes');
+        });
+      });
+    })
 
-  // })
+    describe('When a given change request is invalid', () => {
+      it('should throw an error', () => {
+         expect(() => test.subject.returnChange('1')).toThrow('It is not a valid change request');
+      });
+    });
+
+  })
 
 
 });

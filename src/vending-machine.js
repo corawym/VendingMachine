@@ -130,24 +130,25 @@ class vendingMachine {
 
   // // }
 
-  // returnChange(change){
-  //   if (typeof change === 'number' && change > 0) {
-  //     let i = 0
-  //     let changeCoins =[]
-  //     while(i < this.change.length){
-  //       if(change >= this.change[i].value && this.change[i].quantity > 0){         
-  //         changeCoins.push(this.change[i].denomination)
-  //         change = (change - this.change[i].value).toFixed(2);
-  //       }else{
-  //         i++
-  //       }
-  //     }
-  //     return changeCoins
-  //   } else if (change === 0) {
-  //     return 'No changes'
-  //   }
-  //   throw new Error('Error')
-  // }
+  returnChange(change){
+    if (typeof change === 'number' && change > 0) {
+      let i = 0
+      let changeCoins =[]
+      while(i < this.change.length){
+        if(change >= this.change[i].value && this.change[i].quantity > 0){  
+          this.change[i].quantity -= 1; //to update the current change in data
+          changeCoins.push(this.change[i].denomination)
+          change = (change - this.change[i].value).toFixed(2);
+        }else{
+          i++
+        }
+      }
+      return changeCoins
+    } else if (change === 0) {
+      return 'No changes'
+    }
+    throw new Error('It is not a valid change request')
+  }
 
 }
 
