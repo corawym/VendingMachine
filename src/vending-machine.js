@@ -115,21 +115,18 @@ class vendingMachine {
     throw new Error('Please enter a valid denomination')
   }
 
-  // dispenseInventory(payment){
-  //   if (typeof payment === 'number' && payment > 0) {
-  //     const availableItem = this.inventories.filter((inventory) => {
-  //       if (payment >= inventory.price && inventory.quantity > 0) {
-  //         return inventory
-  //       }
-  //     }) 
-  //     if (availableItem.length > 0) {
-  //       return availableItem
-  //     } else {
-  //       throw new Error('Please enter more coins')
-  //     }
-  //   }
-  //   throw new Error('Please enter more coins')
-  // }
+  dispenseInventory(payment){
+    if (typeof payment === 'number' && payment > 0) {
+      this.inventories.filter((inventory) => {
+        if (payment >= inventory.price && inventory.quantity > 0) {
+          return inventory
+        } else {
+          throw new Error('Please enter more coins')
+        }  
+      })  
+    }
+    throw new Error('Please enter more coins')
+  }
 
   // // selectItem(itemName){
 

@@ -85,36 +85,36 @@ describe('vendingMachine', () => {
   })
 
 
-  // describe('Dispensing inventory based on payment', () => {
+  describe('Dispensing inventory based on payment', () => {
 
-  //   describe('When a given payment is higher than any item prices', () => {
-  //     it('should return the affordable and available inventories', () => {
-  //       const result = test.subject.dispenseInventory(2.6);
-  //       const expectedResult = [
-  //         {
-  //           "item": "water",
-  //           "price": 2,
-  //           "maxQuantity": 10,
-  //           "quantity": 10
-  //         },
-  //         {
-  //           "item": "coke",
-  //           "price": 2,
-  //           "maxQuantity": 10,
-  //           "quantity": 2
-  //         }
-  //       ]
-  //       expect(result).toEqual(expectedResult);
-  //     });
-  //   });
+    describe('When a given payment is higher than any item prices', () => {
+      it('should return the affordable and available inventories', () => {
+        const result = test.subject.dispenseInventory(2.6);
+        const expectedResult = [
+          {
+            "item": "water",
+            "price": 2,
+            "maxQuantity": 10,
+            "quantity": 10
+          },
+          {
+            "item": "coke",
+            "price": 2,
+            "maxQuantity": 10,
+            "quantity": 2
+          }
+        ]
+        expect(result).toEqual(expectedResult);
+      });
+    });
 
-  //   describe('When a given payment is 0', () => {
-  //     it('should throw an error', () => {
-  //        expect(() => test.subject.dispenseInventory(0)).toThrow('Please enter more coins');
-  //     });
-  //   });
+    describe('When a given payment is 0', () => {
+      it('should throw an error', () => {
+         expect(() => test.subject.dispenseInventory(0)).toThrow('Please enter more coins');
+      });
+    });
 
-  // })
+  })
 
 
   // describe('Returning change as coins', () => {
