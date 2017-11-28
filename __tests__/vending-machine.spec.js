@@ -37,11 +37,11 @@ describe('vendingMachine', () => {
 
     describe('When a given inventory exists', () => {
       it('should return the correct inventory with quantity refilled to max quantity', () => {
-        const result = test.subject.refillInventory('coke');
+        const result = test.subject.refillInventory('juice');
         const expectedResult = [
           {
-            "item": "coke",
-            "price": 2,
+            "item": "juice",
+            "price": 3,
             "maxQuantity": 10,
             "quantity": 10
           }
@@ -89,7 +89,7 @@ describe('vendingMachine', () => {
 
     describe('When a given payment is higher than any item prices', () => {
       it('should return the affordable and available inventories', () => {
-        const result = test.subject.dispenseInventory(2.6);
+        const result = test.subject.dispenseInventory(2.60);
         const expectedResult = [
           {
             "item": "water",
@@ -108,9 +108,9 @@ describe('vendingMachine', () => {
       });
     });
 
-    describe('When a given payment is 0', () => {
+    describe('When a given payment is 0 or lower than any item prices', () => {
       it('should throw an error', () => {
-         expect(() => test.subject.dispenseInventory(0)).toThrow('Please enter more coins');
+         expect(() => test.subject.dispenseInventory(1)).toThrow('Please enter more coins');
       });
     });
 
